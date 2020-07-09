@@ -10,4 +10,4 @@
 4 - pyhton3 manage.py runserver
 ```
 
- and then go to [Homepage](127:0:0:1:8000) 
+ and then go to [Homepage](http://127:0:0:1:8000/) 
