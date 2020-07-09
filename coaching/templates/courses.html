@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Courses</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href=home class="logo">Ankit Coaching Institute</a>
+					<nav id="nav">
+						<a href=home>Home</a>
+						<a href=courses>Available  Courses</a>
+						<a href=form>Fill Addmission Form</a>
+					</nav>
+				</div>
+			</header>
+            <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+			<section id="main">
+				<div class="inner">
+					<!-- Table -->
+                    <section>
+							
+                        <h4>Available Courses</h4>
+                        <div class="table-wrapper">
+                            <table class="alt">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Subject</th>
+                                        <th>Paper</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for course in courses%}
+                                    <tr>
+                                        <td>{{ course.course }}</td>
+                                        <td>{{ course.name }}</td>
+                                        <td>{{ course.paper }}</td>
+                                    </tr>
+                                   {% endfor %}
+                                </tbody>
+                                <!--<tfoot>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                        <td>100.00</td>
+                                    </tr>
+                                </tfoot>-->
+                            </table>
+                        </div>
+                    </section>
+            
+				</div>
+			</section>
+            
+		<!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+
+                <div class="copyright">
+                    Ankit Coaching Institute &copy; All Rights Reserved.
+                </div>
+            </div>
+        </section>
+        <!-- Scripts -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/skel.min.js' %}"></script>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

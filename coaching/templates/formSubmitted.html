@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ankit Coaching Institute</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href=home class="logo">Ankit Coaching Institue</a>
+					<nav id="nav">
+						<a href=home>Home</a>
+						<a href=courses>Available  Courses</a>
+						<a href=form>Fill Addmission Form</a>
+					</nav>
+				</div>
+			</header>
+            <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+            
+            <section id="one">
+				<div class="inner">
+					<p> Great! <br><b> {{ Student }}</b>, your form has been submitted.<br> Download the softcopy of your form and follow instructions on it </p>
+					<form method="POST" action=downloadForm>
+						{% csrf_token %}
+						<div class="6u 12u$(xsmall)">
+							<input type="hidden" name="download" value="{{ pdfName }}">
+							<input type="submit" name="downloadbutton" value="Download soft copy of your Admission Form" />
+						</div>
+					</form>
+				</div>
+			</section>
+
+            <section id="two">
+				<div class="inner">
+            <div class="12u$">
+                <ul class="actions">
+                    <li><a href=form><input type="button" value="Or  Edit  Your  Form" class="special" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+		<!-- Footer -->
+			<section id="footer">
+				<div class="inner">
+	
+					<div class="copyright">
+						Ankit Coaching Institute &copy; All Rights Reserved.
+					</div>
+				</div>
+			</section>
+			<!-- Scripts -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/skel.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>

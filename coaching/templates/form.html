@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Admission Form</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href=home class="logo">Ankit Coaching Institue</a>
+					<nav id="nav">
+						<a href=home>Home</a>
+						<a href= courses>Available Courses</a>
+						<a href=form>Fill Addmission Form</a>
+					</nav>
+				</div>
+			</header>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+			<SCRIPT language="javascript">
+				function addRow(tableID) {
+		
+					var table = document.getElementById(tableID);
+		
+					var rowCount = table.rows.length;
+					var row = table.insertRow(rowCount);
+		
+					var cell1 = row.insertCell(0);
+					var element1 = document.createElement("input");
+					element1.type = "checkbox";
+					element1.name="chkbox[]";
+					cell1.appendChild(element1);
+		
+					var cell2 = row.insertCell(1);
+					cell2.innerHTML = rowCount + 1;
+		
+					var cell3 = row.insertCell(2);
+					var element2 = document.createElement("input");
+					element2.type = "text";
+					element2.name = "txtbox[]";
+					cell3.appendChild(element2);
+		
+		
+				}
+		
+				function deleteRow(tableID) {
+					try {
+					var table = document.getElementById(tableID);
+					var rowCount = table.rows.length;
+					var selectedRows = 0
+		
+					for(var i=0; i<rowCount; i++) {
+						var row = table.rows[i];
+						var chkbox = row.cells[0].childNodes[0];
+						  if(null != chkbox && true == chkbox.checked) {
+							selectedRows= selectedRows +1
+						}
+						if(null != chkbox && true == chkbox.checked) {
+							table.deleteRow(i);
+							rowCount--;
+							i--;
+						}
+						
+		
+					}
+					if(selectedRows == 0){
+						alert("Hello! I am an alert box!!");
+						}
+					}catch(e) {
+						alert(e);
+					}
+				}
+		
+			</SCRIPT>	
+
+			
+	<INPUT type="button" value="Add Row" onclick="addRow('category')" />
+
+	<INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+
+	<TABLE id="dataTable" width="350px" border="1">
+		<TR>
+			<TD><INPUT type="checkbox" name="chk"/></TD>
+			<TD> 1 </TD>
+			<TD> <INPUT type="text" /> </TD>
+		</TR>
+	</TABLE>
+	
+
+			<section id="main">
+				<div class="inner">
+            <!-- Form -->
+						<section>
+							<h3>Admission Form</h3>
+							<form method="POST" action=submitform>
+								{% csrf_token %}
+
+								<div class="row uniform 50%">
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="name" id="demo-name" value="" placeholder="Name" required=''/>
+									</div>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="fathersName" id="fathername" value="" placeholder="Father's Name" required=''/>
+									</div>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="contact" id="con" value="" placeholder="Contact Number" required=''/>
+									</div>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name=admissionClass id="class" value="" placeholder="Addmission Class" required=''/>
+									</div>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="aadharNumber" id="addharr" value="" placeholder="Aadhar Number" required=''/>
+									</div>
+									<div class="6u$ 12u$(xsmall)">
+										<input type="email" name="demo-email" id="email" value="" placeholder="Email(optional)" />
+									</div>
+									<div class="12u$">
+										<div class="select-wrapper">
+											<select name="subject1" id="category">
+												<option value="Not Taken">-Choose Subject 1-</option>
+												{% for subject in subjects %}
+												<option value="{{subject.name}} for {{ subject.course }}-Paper{{subject.paper}}">{{subject.name}} for {{ subject.course }}-Paper{{subject.paper}}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+									<div class="12u$">
+										<textarea name="address" id="address" placeholder="Correspondence Address" rows="1"></textarea>
+									</div>
+
+
+									<!-- <div class="6u 12u$(small)">
+										<input type="checkbox" id="copy" name="copy" required=''>
+										<label for="copy">I agree to the Terms and Condtions of Institute</label>
+									</div> -->
+									<div class="12u$">
+										<ul class="actions">
+                                            <li><input type="submit" value="Submit Form" class="special" /></li>
+                                            <li></li>
+											<li><input type="reset" value="Reset The Form" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+                        </section>
+            
+				</div>
+			</section>
+            
+		<!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+
+                <div class="copyright">
+                    Ankit Coaching Institute &copy; All Rights Reserved.
+                </div>
+            </div>
+        </section>
+        <!-- Scripts -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/skel.min.js' %}"></script>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
